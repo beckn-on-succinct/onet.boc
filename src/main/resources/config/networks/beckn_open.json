@@ -1,5 +1,6 @@
 {
   "self_registration_supported": true,
   "base_url": "https://registry.becknprotocol.io",
-  "registry_url" : "https://registry.becknprotocol.io/subscribers"
+  "registry_url" : "https://registry.becknprotocol.io/subscribers",
+  "network_api_adaptor": "in.succinct.onet.boc.api.BocApiAdaptor"
 }

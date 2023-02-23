@@ -5,8 +5,9 @@ import com.venky.swf.integration.api.Call;
 import com.venky.swf.integration.api.HttpMethod;
 import in.succinct.bpp.core.adaptor.NetworkAdaptor;
 import in.succinct.bpp.core.adaptor.NetworkAdaptorFactory;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import in.succinct.bpp.core.adaptor.api.NetworkApiAdaptor;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class BecknRegistry extends NetworkAdaptor{
     static {
@@ -17,6 +18,8 @@ public class BecknRegistry extends NetworkAdaptor{
         super("beckn_open");
         loadDomains();
     }
+
+    private final BocApiAdaptor bocApiAdaptor = new BocApiAdaptor(this);
 
 
 
@@ -30,14 +33,19 @@ public class BecknRegistry extends NetworkAdaptor{
 
         JSONArray array = new Call<JSONObject>().url(getBaseUrl(),"/network_domains").method(HttpMethod.GET).
         header("content-type", MimeType.APPLICATION_JSON.toString()).getResponseAsJson();
-        for (int i = 0 ; array != null && i< array.length() ; i ++ ){
+        for (int i = 0 ; array != null && i< array.size() ; i ++ ){
             JSONObject object = (JSONObject) array.get(i);
             Domain domain = new Domain();
-            domain.setId(object.getString("name"));
-            domain.setName(object.getString("description"));
+            domain.setId((String)object.get("name"));
+            domain.setName((String)object.get("description"));
+            domain.setSchema((String)object.get("schema_url"));
             domains.add(domain);
         }
     }
 
 
+    @Override
+    public NetworkApiAdaptor getApiAdaptor() {
+        return bocApiAdaptor;
+    }
 }
