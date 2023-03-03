@@ -19,11 +19,7 @@ public class BocApiAdaptor extends NetworkApiAdaptor {
 
     @Override
     public void select(CommerceAdaptor adaptor, Request request, Request reply) {
-        request.getMessage().setOrder(getInputOrder(adaptor,request.getMessage().getOrder()));
-
         new SearchAdaptor(adaptor).select(request,reply);
-
-        reply.getMessage().setOrder(getOutputOrder(adaptor,reply.getMessage().getOrder()));
     }
 
 

@@ -19,7 +19,7 @@ public class BecknRegistry extends NetworkAdaptor{
         loadDomains();
     }
 
-    private final BocApiAdaptor bocApiAdaptor = new BocApiAdaptor(this);
+    private transient final BocApiAdaptor bocApiAdaptor = new BocApiAdaptor(this);
 
 
 
@@ -39,6 +39,7 @@ public class BecknRegistry extends NetworkAdaptor{
             domain.setId((String)object.get("name"));
             domain.setName((String)object.get("description"));
             domain.setSchema((String)object.get("schema_url"));
+            domain.setExtensionPackage(getExtensionPackage());
             domains.add(domain);
         }
     }
