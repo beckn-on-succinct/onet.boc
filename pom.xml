@@ -95,10 +95,5 @@
             <artifactId>bpp.core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>in.succinct</groupId>
-            <artifactId>bpp.search</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>
