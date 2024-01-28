@@ -5,6 +5,7 @@ import com.venky.swf.integration.api.Call;
 import com.venky.swf.integration.api.HttpMethod;
 import in.succinct.onet.core.adaptor.NetworkAdaptor;
 import in.succinct.onet.core.adaptor.NetworkAdaptorFactory;
+import in.succinct.onet.core.adaptor.NetworkApiAdaptor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -16,6 +17,20 @@ public class BecknRegistry extends NetworkAdaptor {
     public BecknRegistry(){
         super("beckn_open");
         loadDomains();
+    }
+
+    private NetworkApiAdaptor apiAdaptor;
+    @Override
+    public NetworkApiAdaptor getApiAdaptor() {
+        if (apiAdaptor != null){
+            return apiAdaptor;
+        }
+        synchronized (this) {
+            if (apiAdaptor == null) {
+                apiAdaptor = super.getApiAdaptor();
+            }
+        }
+        return apiAdaptor;
     }
 
 
