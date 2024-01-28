@@ -1,5 +1,7 @@
 {
+  "core_version" : "0.9.4",
   "registry_id": "registry.becknprotocol.io..LREG",
+  "search_provider_id" : "gateway.becknprotocol.io..BG",
   "self_registration_supported": true,
   "subscription_needed_post_registration" : true,
   "base_url": "https://registry.becknprotocol.io",

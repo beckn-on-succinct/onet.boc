@@ -3,13 +3,12 @@ package in.succinct.onet.boc.extensions;
 import com.venky.swf.db.annotations.column.ui.mimes.MimeType;
 import com.venky.swf.integration.api.Call;
 import com.venky.swf.integration.api.HttpMethod;
-import in.succinct.bpp.core.adaptor.NetworkAdaptor;
-import in.succinct.bpp.core.adaptor.NetworkAdaptorFactory;
-import in.succinct.bpp.core.adaptor.api.NetworkApiAdaptor;
+import in.succinct.onet.core.adaptor.NetworkAdaptor;
+import in.succinct.onet.core.adaptor.NetworkAdaptorFactory;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class BecknRegistry extends NetworkAdaptor{
+public class BecknRegistry extends NetworkAdaptor {
     static {
         NetworkAdaptorFactory.getInstance().registerAdaptor(new BecknRegistry());
     }
@@ -18,8 +17,6 @@ public class BecknRegistry extends NetworkAdaptor{
         super("beckn_open");
         loadDomains();
     }
-
-    private transient final BocApiAdaptor bocApiAdaptor = new BocApiAdaptor(this);
 
 
 
@@ -45,8 +42,4 @@ public class BecknRegistry extends NetworkAdaptor{
     }
 
 
-    @Override
-    public NetworkApiAdaptor getApiAdaptor() {
-        return bocApiAdaptor;
-    }
 }
