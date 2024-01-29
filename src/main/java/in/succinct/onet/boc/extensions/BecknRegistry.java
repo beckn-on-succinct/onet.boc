@@ -9,7 +9,7 @@ import in.succinct.onet.core.adaptor.NetworkApiAdaptor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class BecknRegistry extends NetworkAdaptor {
+public class BecknRegistry extends BocRegistry {
     static {
         NetworkAdaptorFactory.getInstance().registerAdaptor(new BecknRegistry());
     }

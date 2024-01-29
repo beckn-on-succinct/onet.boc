@@ -4,7 +4,7 @@
   "search_provider_id" : "search.humbhionline.in",
   "self_registration_supported": true,
   "subscription_needed_post_registration" : true,
-  "base_url": "https://registry.humbhionline.io",
-  "registry_url" : "https://registry.humbhionline.io/subscribers",
+  "base_url": "https://registry.humbhionline.in",
+  "registry_url" : "https://registry.humbhionline.in/subscribers",
   "extension_package": "in.succinct.beckn.boc"
 }
