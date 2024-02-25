@@ -1,0 +1,10 @@
+{
+  "core_version" : "0.9.4",
+  "registry_id": "registry.automicle.com..LREG",
+  "search_provider_id" : "gateway.automicle.com",
+  "self_registration_supported": true,
+  "subscription_needed_post_registration" : true,
+  "base_url": "https://registry.automicle.com",
+  "registry_url" : "https://registry.automicle.com/subscribers",
+  "extension_package": "in.succinct.beckn.boc"
+}

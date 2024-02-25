@@ -6,5 +6,6 @@
   "subscription_needed_post_registration" : true,
   "base_url": "https://registry.becknprotocol.io",
   "registry_url" : "https://registry.becknprotocol.io/subscribers",
-  "extension_package": "in.succinct.beckn.boc"
+  "extension_package": "in.succinct.beckn.boc",
+  "wild_card" : ""
 }

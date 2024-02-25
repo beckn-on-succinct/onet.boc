@@ -1,5 +1,6 @@
 package in.succinct.beckn.boc;
 
+import in.succinct.beckn.ItemQuantity;
 import in.succinct.beckn.TagGroups;
 import in.succinct.beckn.Tags;
 import org.json.simple.JSONObject;
@@ -39,4 +40,5 @@ public class Item extends in.succinct.beckn.Item {
         }
         return groups;
     }
+
 }
