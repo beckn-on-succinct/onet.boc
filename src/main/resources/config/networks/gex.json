@@ -1,0 +1,22 @@
+{
+  "core_version" : "0.9.4",
+  "registry_id": "id.humbhionline.in",
+  "search_provider_id" : "search.humbhionline.in",
+  "self_registration_supported": true,
+  "subscription_needed_post_registration" : true,
+  "base_url": "https://id.humbhionline.in",
+  "registry_url" : "https://id.humbhionline.in/subscribers",
+  "extension_package": "in.succinct.beckn.boc",
+  "domains" : [
+    {
+      "id" : "GEX:PRODUCT",
+      "name" : "Product",
+      "schema" : "https://github.com/venkatramanm/protocol-specifications/blob/core-0.9.x-lts/core/v0/api/core.yaml"
+    },
+    {
+      "id" : "GEX:LOGISTICS",
+      "name" : "Logistics",
+      "schema" : "https://github.com/venkatramanm/protocol-specifications/blob/core-0.9.x-lts/core/v0/api/core.yaml"
+    }
+  ]
+}
