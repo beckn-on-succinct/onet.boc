@@ -1,10 +1,10 @@
 {
   "core_version" : "0.9.4",
-  "registry_id": "registry.humbhionline.in..LREG",
+  "registry_id": "id.humbhionline.in",
   "search_provider_id" : "search.humbhionline.in",
   "self_registration_supported": true,
   "subscription_needed_post_registration" : true,
-  "base_url": "https://registry.humbhionline.in",
-  "registry_url" : "https://registry.humbhionline.in/subscribers",
+  "base_url": "https://id.humbhionline.in",
+  "registry_url" : "https://id.humbhionline.in/subscribers",
   "extension_package": "in.succinct.beckn.boc"
 }

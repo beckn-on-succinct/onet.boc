@@ -1,11 +1,11 @@
 {
   "core_version" : "0.9.4",
-  "registry_id": "id.humbhionline.in",
+  "registry_id": "trade.humbhionline.in",
   "search_provider_id" : "search.humbhionline.in",
   "self_registration_supported": true,
   "subscription_needed_post_registration" : true,
-  "base_url": "https://id.humbhionline.in",
-  "registry_url" : "https://id.humbhionline.in/subscribers",
+  "base_url": "https://trade.humbhionline.in",
+  "registry_url" : "https://trade.humbhionline.in/subscribers",
   "extension_package": "in.succinct.beckn.boc",
   "domains" : [
     {
