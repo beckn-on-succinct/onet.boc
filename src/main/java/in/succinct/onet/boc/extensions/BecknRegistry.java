@@ -12,7 +12,9 @@ import org.json.simple.JSONObject;
 
 public class BecknRegistry extends BocRegistry {
     static {
-        NetworkAdaptorFactory.getInstance().registerAdaptor(new BecknRegistry());
+        if (isEnabled("beckn_open")) {
+            NetworkAdaptorFactory.getInstance().registerAdaptor(new BecknRegistry());
+        }
     }
 
     public BecknRegistry(){

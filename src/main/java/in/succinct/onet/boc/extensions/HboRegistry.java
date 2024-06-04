@@ -5,7 +5,9 @@ import in.succinct.onet.core.adaptor.NetworkAdaptorFactory;
 
 public class HboRegistry extends BocRegistry {
     static {
-        NetworkAdaptorFactory.getInstance().registerAdaptor(new HboRegistry());
+        if (isEnabled("hbo")) {
+            NetworkAdaptorFactory.getInstance().registerAdaptor(new HboRegistry());
+        }
     }
 
     public HboRegistry(){
