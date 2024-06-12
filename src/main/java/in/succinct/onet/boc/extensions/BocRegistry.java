@@ -8,6 +8,8 @@ import in.succinct.onet.core.adaptor.NetworkApiAdaptor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.HashMap;
+
 public class BocRegistry extends NetworkAdaptor {
     protected BocRegistry(String networkName){
         super(networkName);
@@ -29,7 +31,7 @@ public class BocRegistry extends NetworkAdaptor {
     }
 
 
-
+    @SuppressWarnings("unchecked")
     private void loadDomains(){
         Domains domains = getDomains();
         if (domains != null){
@@ -39,14 +41,18 @@ public class BocRegistry extends NetworkAdaptor {
         setDomains(domains);
 
         JSONArray array = new Call<JSONObject>().url(getBaseUrl(),"/network_domains").method(HttpMethod.GET).
-                header("content-type", MimeType.APPLICATION_JSON.toString()).getResponseAsJson();
+                headers(new HashMap<>(){{
+                    put("content-type", MimeType.APPLICATION_JSON.toString());
+                    put("ApiKeyCase","SNAKE");
+                    put("ApiRootRequired","N");
+                }}).getResponseAsJson();
         for (int i = 0 ; array != null && i< array.size() ; i ++ ){
             JSONObject object = (JSONObject) array.get(i);
             Domain domain = new Domain();
             domain.setId((String)object.get("name"));
-            domain.setName((String)object.get("description"));
+            domain.setName((String)object.getOrDefault("code",object.get("description")));
             domain.setSchema((String)object.get("schema_url"));
-            domain.setExtensionPackage(String.format("%s.%s",getExtensionPackage(),object.get("description")));
+            domain.setExtensionPackage(String.format("%s.%s",getExtensionPackage(),domain.getName()));
             domains.add(domain);
         }
     }
