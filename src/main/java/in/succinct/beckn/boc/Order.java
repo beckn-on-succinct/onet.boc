@@ -1,6 +1,8 @@
 package in.succinct.beckn.boc;
 
 import in.succinct.beckn.Category.CategoryCode;
+import in.succinct.beckn.Fulfillments;
+import in.succinct.beckn.Order.Status.StatusConverter;
 import in.succinct.beckn.TagGroups;
 
 import java.util.HashMap;
@@ -31,22 +33,30 @@ public class Order extends in.succinct.beckn.Order {
     }};
     @Override
     public Status getState() {
-        String s = get("state");
-        Status status =  STRING_TO_ORDER_STATUS.get(s);
-        if (status == null){
-            status = super.getState();
-        }
-        return status;
+        String s = get("status");
+        return   STRING_TO_ORDER_STATUS.get(s);
     }
     @Override
     public void setState(Status state){
         String s = ORDER_STATUS_TO_STRING.get(state);
         if (s == null){
-            super.setState(state);
+            rm("status");
         }else {
-            set("state",s);
+            set("status",s);
         }
     }
+
+
+    @Override
+    public Fulfillments getFulfillments(){
+        return get(Fulfillments.class, "fulfillments");
+    }
+    @Override
+    public void setFulfillments(Fulfillments fulfillments){
+        set("fulfillments",fulfillments);
+    }
+
+
 
     // To be enabled again in 1.0
     @Override
@@ -58,4 +68,8 @@ public class Order extends in.succinct.beckn.Order {
     public void setTags(TagGroups tags) {
         // Do nothing
     }
+
+
+
+
 }
