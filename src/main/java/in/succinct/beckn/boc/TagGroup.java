@@ -31,4 +31,13 @@ public class TagGroup extends in.succinct.beckn.TagGroup {
         set("descriptor",descriptor);
     }
 
+    @Override
+    public String getName() {
+        return getDescriptor().getName();
+    }
+
+    @Override
+    public void setName(String name) {
+        getDescriptor().setName(name);
+    }
 }
