@@ -1,6 +1,7 @@
 package in.succinct.beckn.boc;
 
 import com.venky.core.util.ObjectUtil;
+import in.succinct.beckn.PaymentType;
 
 public class Payment extends in.succinct.beckn.Payment {
     @Override
@@ -32,11 +33,11 @@ public class Payment extends in.succinct.beckn.Payment {
 
     @Override
     public PaymentType getType(){
-        return getEnum(PaymentType.class, "payment_type",new PaymentTypeConvertor());
+        return getEnum(PaymentType.class, "type",new PaymentTypeConvertor());
     }
     @Override
     public void setType(PaymentType payment_type){
-        setEnum("payment_type",payment_type,new PaymentTypeConvertor());
+        setEnum("type",payment_type,new PaymentTypeConvertor());
     }
 
     private static class PaymentTypeConvertor extends EnumConvertor<PaymentType> {
