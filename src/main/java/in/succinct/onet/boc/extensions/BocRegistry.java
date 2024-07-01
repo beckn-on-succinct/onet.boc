@@ -3,6 +3,8 @@ package in.succinct.onet.boc.extensions;
 import com.venky.swf.db.annotations.column.ui.mimes.MimeType;
 import com.venky.swf.integration.api.Call;
 import com.venky.swf.integration.api.HttpMethod;
+import com.venky.swf.plugins.background.core.IOTask;
+import com.venky.swf.plugins.background.core.TaskManager;
 import in.succinct.onet.core.adaptor.NetworkAdaptor;
 import in.succinct.onet.core.adaptor.NetworkApiAdaptor;
 import org.json.simple.JSONArray;
@@ -13,7 +15,9 @@ import java.util.HashMap;
 public class BocRegistry extends NetworkAdaptor {
     protected BocRegistry(String networkName){
         super(networkName);
-        loadDomains();
+        TaskManager.instance().executeAsync((IOTask)()->{
+            loadDomains();
+        },false);
     }
 
     private NetworkApiAdaptor apiAdaptor;
