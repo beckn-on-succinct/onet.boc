@@ -66,7 +66,7 @@ public class Fulfillment extends in.succinct.beckn.Fulfillment {
             stops = new FulfillmentStops();
             setFulfillmentStops(stops);
         }
-        if (stops.isEmpty()){
+        if (stops.size() <= 1 ){
             return null;
         }
 
