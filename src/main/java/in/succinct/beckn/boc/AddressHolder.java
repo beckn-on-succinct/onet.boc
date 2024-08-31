@@ -16,18 +16,18 @@ public interface AddressHolder  extends in.succinct.beckn.AddressHolder {
             set("address", address.flatten());
             if (address.getCity() != null) {
                 setCity(new City() {{
-                    setCode(address.getCity());
+                    setName(address.getCity());
                 }});
 
             }
             if (address.getCountry() != null){
                 setCountry(new Country(){{
-                    setCode(address.getCountry());
+                    setName(address.getCountry());
                 }});
             }
             if (address.getState() != null){
                 setState(new State(){{
-                    setCode(address.getState());
+                    setName(address.getState());
                 }});
             }
             if (address.getPinCode() != null){
