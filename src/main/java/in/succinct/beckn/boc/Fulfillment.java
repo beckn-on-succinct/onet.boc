@@ -55,8 +55,8 @@ public class Fulfillment extends in.succinct.beckn.Fulfillment {
         }
         if (stops.size() > 1){
             stops.remove(stops.size()-1);
+            stops.add(end);
         }
-        stops.add(end);
     }
 
     @Override
