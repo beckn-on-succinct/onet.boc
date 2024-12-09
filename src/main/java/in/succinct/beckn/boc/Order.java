@@ -23,6 +23,7 @@ public class Order extends in.succinct.beckn.Order {
         put("PACKED", Status.In_progress);
         put("SHIPPED",Status.Out_for_delivery);
         put("DELIVERED",Status.Completed);
+        put("CANCELLED",Status.Cancelled);
     }};
     static final Map<Status,String> ORDER_STATUS_TO_STRING = new HashMap<>(){{
         for (Entry<String,Status> stringToOrderStatusEntry : STRING_TO_ORDER_STATUS.entrySet()) {
