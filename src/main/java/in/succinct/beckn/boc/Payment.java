@@ -1,7 +1,6 @@
 package in.succinct.beckn.boc;
 
-import com.venky.core.util.ObjectUtil;
-import in.succinct.beckn.PaymentType;
+import in.succinct.beckn.Fulfillment.FulfillmentStatus;
 
 public class Payment extends in.succinct.beckn.Payment {
     @Override
@@ -30,25 +29,15 @@ public class Payment extends in.succinct.beckn.Payment {
     public void setCollectedBy(CollectedBy collected_by){
         set("collected_by",collected_by == null ? null : collected_by.toString());
     }
-
+    
     @Override
-    public PaymentType getType(){
-        return getEnum(PaymentType.class, "type",new PaymentTypeConvertor());
+    public FulfillmentStatus getInvoiceEvent() {
+        return super.getInvoiceEvent();
     }
+    
     @Override
-    public void setType(PaymentType payment_type){
-        setEnum("type",payment_type,new PaymentTypeConvertor());
+    public void setInvoiceEvent(FulfillmentStatus event) {
+        super.setInvoiceEvent(event);
     }
-
-    private static class PaymentTypeConvertor extends EnumConvertor<PaymentType> {
-        @Override
-        public String toString(PaymentType value) {
-            return value == PaymentType.ON_ORDER ? "PRE_ORDER" : super.toString(value);
-        }
-
-        @Override
-        public PaymentType valueOf(String enumRepresentation) {
-            return super.valueOf(ObjectUtil.equals(enumRepresentation,"PRE-ORDER") ? "ON_ORDER"  : enumRepresentation );
-        }
-    }
+    
 }

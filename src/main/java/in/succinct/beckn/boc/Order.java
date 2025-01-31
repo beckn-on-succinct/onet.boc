@@ -1,8 +1,6 @@
 package in.succinct.beckn.boc;
 
-import in.succinct.beckn.Category.CategoryCode;
 import in.succinct.beckn.Fulfillments;
-import in.succinct.beckn.Order.Status.StatusConverter;
 import in.succinct.beckn.TagGroups;
 
 import java.util.HashMap;
@@ -19,9 +17,8 @@ public class Order extends in.succinct.beckn.Order {
 
     static final Map<String,Status> STRING_TO_ORDER_STATUS = new HashMap<>(){{
         put("INITIATED",Status.Created);
+        put("AWAITING_ACCEPTANCE",Status.Awaiting_Acceptance);
         put("ACKNOWLEDGED",Status.Accepted);
-        put("PACKED", Status.In_progress);
-        put("SHIPPED",Status.Out_for_delivery);
         put("DELIVERED",Status.Completed);
         put("CANCELLED",Status.Cancelled);
     }};
@@ -33,13 +30,13 @@ public class Order extends in.succinct.beckn.Order {
         }
     }};
     @Override
-    public Status getState() {
+    public Status getStatus() {
         String s = get("status");
         return   STRING_TO_ORDER_STATUS.get(s);
     }
     @Override
-    public void setState(Status state){
-        String s = ORDER_STATUS_TO_STRING.get(state);
+    public void setStatus(Status status){
+        String s = ORDER_STATUS_TO_STRING.get(status);
         if (s == null){
             rm("status");
         }else {
