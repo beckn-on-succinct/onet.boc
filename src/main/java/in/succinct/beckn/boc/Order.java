@@ -19,6 +19,8 @@ public class Order extends in.succinct.beckn.Order {
         put("INITIATED",Status.Created);
         put("AWAITING_ACCEPTANCE",Status.Awaiting_Acceptance);
         put("ACKNOWLEDGED",Status.Accepted);
+        put("PACKED",Status.Prepared);
+        put("SHIPPED",Status.In_Transit);
         put("DELIVERED",Status.Completed);
         put("CANCELLED",Status.Cancelled);
     }};
