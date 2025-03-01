@@ -47,15 +47,6 @@ public class Order extends in.succinct.beckn.Order {
     }
 
 
-    @Override
-    public Fulfillments getFulfillments(){
-        return get(Fulfillments.class, "fulfillments");
-    }
-    @Override
-    public void setFulfillments(Fulfillments fulfillments){
-        set("fulfillments",fulfillments);
-    }
-
 
 
     // To be enabled again in 1.0
