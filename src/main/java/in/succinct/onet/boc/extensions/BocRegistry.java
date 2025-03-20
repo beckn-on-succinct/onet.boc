@@ -1,5 +1,6 @@
 package in.succinct.onet.boc.extensions;
 
+import com.venky.core.util.ObjectUtil;
 import com.venky.swf.db.annotations.column.ui.mimes.MimeType;
 import com.venky.swf.integration.api.Call;
 import com.venky.swf.integration.api.HttpMethod;
@@ -55,6 +56,10 @@ public class BocRegistry extends NetworkAdaptor {
             Domain domain = new Domain();
             domain.setId((String)object.get("name"));
             domain.setName((String)object.getOrDefault("code",object.get("description")));
+            String domainCategory = (String)object.get("domain_category");
+            if (!ObjectUtil.isVoid(domainCategory)) {
+                domain.setDomainCategory(DomainCategory.valueOf(domainCategory));
+            }
             domain.setSchema((String)object.get("schema_url"));
             domain.setExtensionPackage(String.format("%s.%s",getExtensionPackage(),domain.getName()));
             domains.add(domain);
