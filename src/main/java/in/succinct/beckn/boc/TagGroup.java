@@ -13,31 +13,37 @@ public class TagGroup extends in.succinct.beckn.TagGroup {
     public TagGroup(String code, String name, Object value) {
         super(code, name, value);
     }
-
+    
     @Override
-    public void setId(String id) {
-        getDescriptor().setCode(id);
+    protected String getCode(){
+        return getDescriptor() == null ? null : getDescriptor().getCode();
     }
-
+    
     @Override
-    public String getId() {
-        return getDescriptor().getCode();
+    protected void setCode(String code){
+        getDescriptor(true).setCode(code);
     }
-
+    
+    @Override
+    public String getName(){
+        return getDescriptor() == null ? null : getDescriptor().getName();
+    }
+    
+    @Override
+    public void setName(String name){
+        getDescriptor(true).setName(name);
+    }
+    
     public Descriptor getDescriptor(){
-        return get(Descriptor.class, "descriptor",true);
+        return get(Descriptor.class, "descriptor");
     }
+    public Descriptor getDescriptor(boolean createIfAbsent){
+        return get(Descriptor.class, "descriptor",createIfAbsent);
+    }
+    
     public void setDescriptor(Descriptor descriptor){
         set("descriptor",descriptor);
     }
-
-    @Override
-    public String getName() {
-        return getDescriptor().getName();
-    }
-
-    @Override
-    public void setName(String name) {
-        getDescriptor().setName(name);
-    }
+    
+    
 }
