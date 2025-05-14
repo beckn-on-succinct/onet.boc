@@ -5,6 +5,7 @@ import com.venky.swf.db.annotations.column.ui.mimes.MimeType;
 import com.venky.swf.integration.api.Call;
 import com.venky.swf.integration.api.HttpMethod;
 import com.venky.swf.plugins.background.core.IOTask;
+import com.venky.swf.plugins.background.core.RetryTask;
 import com.venky.swf.plugins.background.core.TaskManager;
 import in.succinct.onet.core.adaptor.NetworkAdaptor;
 import in.succinct.onet.core.adaptor.NetworkApiAdaptor;
@@ -12,13 +13,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeoutException;
 
 public class BocRegistry extends NetworkAdaptor {
     protected BocRegistry(String networkName){
         super(networkName);
         TaskManager.instance().executeAsync((IOTask)()->{
             loadDomains();
-        },false);
+        },    false);
     }
 
     private NetworkApiAdaptor apiAdaptor;
@@ -34,16 +36,23 @@ public class BocRegistry extends NetworkAdaptor {
         }
         return apiAdaptor;
     }
-
-
+    
+    @Override
+    public Domains getDomains() {
+        if (!areDomainsLoaded()){
+            loadDomains();
+        }
+        return super.getDomains();
+    }
+    boolean areDomainsLoaded(){
+        return get("domains") != null;
+    }
+    
     @SuppressWarnings("unchecked")
     private void loadDomains(){
-        Domains domains = getDomains();
-        if (domains != null){
+        if (areDomainsLoaded()){
             return;
         }
-        domains = new Domains();
-        setDomains(domains);
 
         JSONArray array = new Call<JSONObject>().url(getBaseUrl(),"/network_domains").method(HttpMethod.GET).
                 headers(new HashMap<>(){{
@@ -51,18 +60,22 @@ public class BocRegistry extends NetworkAdaptor {
                     put("ApiKeyCase","SNAKE");
                     put("ApiRootRequired","N");
                 }}).getResponseAsJson();
-        for (int i = 0 ; array != null && i< array.size() ; i ++ ){
-            JSONObject object = (JSONObject) array.get(i);
-            Domain domain = new Domain();
-            domain.setId((String)object.get("name"));
-            domain.setName((String)object.getOrDefault("code",object.get("description")));
-            String domainCategory = (String)object.get("domain_category");
-            if (!ObjectUtil.isVoid(domainCategory)) {
-                domain.setDomainCategory(DomainCategory.valueOf(domainCategory));
+        if (array != null){
+            Domains domains = new Domains();
+            setDomains(domains);
+            for (Object o : array) {
+                JSONObject object = (JSONObject) o;
+                Domain domain = new Domain();
+                domain.setId((String) object.get("name"));
+                domain.setName((String) object.getOrDefault("code", object.get("description")));
+                String domainCategory = (String) object.get("domain_category");
+                if (!ObjectUtil.isVoid(domainCategory)) {
+                    domain.setDomainCategory(DomainCategory.valueOf(domainCategory));
+                }
+                domain.setSchema((String) object.get("schema_url"));
+                domain.setExtensionPackage(String.format("%s.%s", getExtensionPackage(), domain.getName()));
+                domains.add(domain);
             }
-            domain.setSchema((String)object.get("schema_url"));
-            domain.setExtensionPackage(String.format("%s.%s",getExtensionPackage(),domain.getName()));
-            domains.add(domain);
         }
     }
 }
