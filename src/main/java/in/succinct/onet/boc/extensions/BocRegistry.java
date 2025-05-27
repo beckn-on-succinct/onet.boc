@@ -11,6 +11,7 @@ import com.venky.swf.plugins.background.core.RetryTask;
 import com.venky.swf.plugins.background.core.Task;
 import com.venky.swf.plugins.background.core.TaskManager;
 import com.venky.swf.routing.Router;
+import in.succinct.beckn.Descriptor;
 import in.succinct.onet.core.adaptor.NetworkAdaptor;
 import in.succinct.onet.core.adaptor.NetworkApiAdaptor;
 import org.json.simple.JSONArray;
@@ -90,13 +91,18 @@ public class BocRegistry extends NetworkAdaptor {
                 JSONObject object = (JSONObject) o;
                 Domain domain = new Domain();
                 domain.setId((String) object.get("name"));
-                domain.setName((String) object.getOrDefault("code", object.get("description")));
+                //domain.setName((String) object.getOrDefault("code", object.get("description")));
                 String domainCategory = (String) object.get("domain_category");
                 if (!ObjectUtil.isVoid(domainCategory)) {
                     domain.setDomainCategory(DomainCategory.valueOf(domainCategory));
                 }
+                Descriptor descriptor  = domain.getDescriptor();
+                descriptor.setName(domain.getId());
+                descriptor.setCode((String)object.getOrDefault("code",object.get("description")));
+                descriptor.setLongDesc((String)object.getOrDefault("description", object.get("code")));
+                descriptor.setShortDesc(descriptor.getLongDesc());
                 domain.setSchema((String) object.get("schema_url"));
-                domain.setExtensionPackage(String.format("%s.%s", getExtensionPackage(), domain.getName()));
+                domain.setExtensionPackage(String.format("%s.%s", getExtensionPackage(), domain.getDescriptor().getCode()));
                 domains.add(domain);
             }
         }
