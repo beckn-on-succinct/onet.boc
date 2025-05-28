@@ -29,7 +29,7 @@ public class BocRegistry extends NetworkAdaptor {
                     @Override
                     public void execute() {
                         try {
-                            Thread.currentThread().wait(5000);
+                            Thread.sleep(5000);
                         }catch (InterruptedException ex){
                             //
                         }finally {
