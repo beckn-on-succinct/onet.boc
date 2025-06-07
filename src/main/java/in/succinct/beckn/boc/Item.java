@@ -27,12 +27,12 @@ public class Item extends in.succinct.beckn.Item {
 
     @Override
     public BecknStrings getCategoryIds() {
-        return get(BecknStrings.class, "category_ids");
+        return get(BecknStrings.class, "category_ids" , true);
     }
 
     @Override
     public BecknStrings getFulfillmentIds() {
-        return get(BecknStrings.class,"fulfillment_ids");
+        return get(BecknStrings.class,"fulfillment_ids",true);
     }
 
     @Override
@@ -47,12 +47,12 @@ public class Item extends in.succinct.beckn.Item {
 
     @Override
     public BecknStrings getLocationIds() {
-        return get(BecknStrings.class, "location_ids");
+        return get(BecknStrings.class, "location_ids",true);
     }
 
     @Override
     public BecknStrings getPaymentIds() {
-        return get(BecknStrings.class, "payment_ids");
+        return get(BecknStrings.class, "payment_ids",true);
     }
 
     @Override
