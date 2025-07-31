@@ -49,18 +49,5 @@ public class Order extends in.succinct.beckn.Order {
 
 
 
-    // To be enabled again in 1.0
-    @Override
-    public TagGroups getTags() {
-        return null;
-    }
-
-    @Override
-    public void setTags(TagGroups tags) {
-        // Do nothing
-    }
-
-
-
 
 }
