@@ -6,8 +6,6 @@ import com.venky.swf.db.model.status.RouterStatus;
 import com.venky.swf.db.model.status.ServerStatus;
 import com.venky.swf.integration.api.Call;
 import com.venky.swf.integration.api.HttpMethod;
-import com.venky.swf.plugins.background.core.IOTask;
-import com.venky.swf.plugins.background.core.RetryTask;
 import com.venky.swf.plugins.background.core.Task;
 import com.venky.swf.plugins.background.core.TaskManager;
 import com.venky.swf.routing.Router;
@@ -17,9 +15,7 @@ import in.succinct.onet.core.adaptor.NetworkApiAdaptor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.concurrent.TimeoutException;
 
 public class BocRegistry extends NetworkAdaptor {
     protected BocRegistry(String networkName){
@@ -71,7 +67,6 @@ public class BocRegistry extends NetworkAdaptor {
         return get("domains") != null;
     }
     
-    @SuppressWarnings("unchecked")
     private void loadDomains(){
         if (areDomainsLoaded()){
             return;
